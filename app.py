@@ -36,6 +36,7 @@ def home():
         f"/api/v1.0/<start>/<end><br/>"
     )
 
+
 @app.route("/api/v1.0/precipitation")
 def precipitation():
     # Create link from Python to DB
