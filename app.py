@@ -34,9 +34,6 @@ def home():
         f"/api/v1.0/<start>/<end><br/>"
     )
 
-
-#Return the JSON representation of your dictionary.
-
 @app.route("/api/v1.0/precipitation")
 def precipitation():
     # Create link from Python to DB
@@ -51,7 +48,16 @@ def precipitation():
         measurement_dict[date] = prcp
         all_measurements.append(measurement_dict)
     
+    #Return the JSON representation of your dictionary.    
     return jsonify(all_measurements)
+
+@app.route("/api/v1.0/stations")
+def stations():
+    session = Session(engine)
+    results = session.query(Station.station).all()
+    session.close()
+    
+    return jsonify(results)
 
 if __name__ == "__main__":
     app.run(debug=True)
